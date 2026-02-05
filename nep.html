@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ne">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Election Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main>
+        <div class="container space-y-6">
+            <div class="header">
+                <div class="header-brand">
+                    <div class="header-icon">
+                        <iconify-icon icon="solar:chart-2-linear" width="24" height="24"
+                            stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <div class="header-text">
+                        <h1>Directly to the House of Representatives</h1>
+                        <p>Election 2079 • Latest Update/p>
+                    </div>
+                </div>
+
+                <div class="tab-container">
+                    <button class="tab-button active" data-tab="candidate">
+                        <iconify-icon icon="solar:user-linear" width="16" height="16"></iconify-icon>
+                        उम्मेदवार
+                    </button>
+                    <button class="tab-button" data-tab="margin">
+                        <iconify-icon icon="solar:graph-up-linear" width="16" height="16"></iconify-icon>
+                        मतान्तर
+                    </button>
+                    <button class="tab-button" data-tab="party">
+                        <iconify-icon icon="solar:flag-linear" width="16" height="16"></iconify-icon>
+                        पार्टी
+                    </button>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="view-toggle-wrapper">
+                    <h2 class="view-title">
+                      Nepal Election
+                    </h2>
+                    <div class="tab-container view-toggle">
+                        <button class="tab-button active" data-view="list">
+                            <iconify-icon icon="solar:list-linear" width="16" height="16"></iconify-icon>
+                        </button>
+                        <button class="tab-button" data-view="grid">
+                            <iconify-icon icon="solar:widget-2-linear" width="16" height="16"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="partyCards" class="party-cards-wrapper">
+                    <div class="party-card">
+                        <div class="party-card-inner">
+                            <div class="party-content">
+                                <div class="party-header">
+                                    <div class="party-logo nc">NC</div>
+                                    <div class="party-info">
+                                        <h3 class="nc-hover">नेपाली कांग्रेस</h3>
+                                        <div class="party-status">
+                                            <span class="status-dot green"></span>
+                                            सरकारको नेतृत्व
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="seat-stats">
+                                    <div class="seat-row">
+                                        <div class="seat-label">प्रत्यक्ष</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill direct" style="width: 64%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">५७ सिट</span>
+                                                <span class="percentage">३४.५%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seat-row">
+                                        <div class="seat-label">समानुपातिक</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill proportional" style="width: 36%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">३२ सिट</span>
+                                                <span class="percentage">२७.८%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="total-sidebar">
+                                <span class="total-label">जम्मा सिट</span>
+                                <div class="total-count-wrapper">
+                                    <span class="total-count">८९</span>
+                                    <iconify-icon icon="solar:cup-star-linear" class="trophy-icon" width="20"
+                                        height="20"></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="party-card">
+                        <div class="party-card-inner">
+                            <div class="party-content">
+                                <div class="party-header">
+                                    <div class="party-logo uml">UML</div>
+                                    <div class="party-info">
+                                        <h3 class="uml-hover">नेकपा (एमाले)</h3>
+                                        <div class="party-status">
+                                            <span class="status-dot red"></span>
+                                            प्रमुख प्रतिपक्ष
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="seat-stats">
+                                    <div class="seat-row">
+                                        <div class="seat-label">प्रत्यक्ष</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill direct" style="width: 49%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">४४ सिट</span>
+                                                <span class="percentage">२६.९%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seat-row">
+                                        <div class="seat-label">समानुपातिक</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill proportional" style="width: 38%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">३४ सिट</span>
+                                                <span class="percentage">२८.१%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="total-sidebar">
+                                <span class="total-label">जम्मा सिट</span>
+                                <div class="total-count-wrapper">
+                                    <span class="total-count">७८</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="party-card">
+                        <div class="party-card-inner">
+                            <div class="party-content">
+                                <div class="party-header">
+                                    <div class="party-logo mc">MC</div>
+                                    <div class="party-info">
+                                        <h3 class="mc-hover">नेकपा (माओवादी केन्द्र)</h3>
+                                        <div class="party-status">
+                                            <span class="status-dot red"></span>
+                                            गठबन्धन दल
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="seat-stats">
+                                    <div class="seat-row">
+                                        <div class="seat-label">प्रत्यक्ष</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill direct" style="width: 20%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">१८ सिट</span>
+                                                <span class="percentage">११.२%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seat-row">
+                                        <div class="seat-label">समानुपातिक</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill proportional" style="width: 16%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">१४ सिट</span>
+                                                <span class="percentage">११.५%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="total-sidebar">
+                                <span class="total-label">जम्मा सिट</span>
+                                <div class="total-count-wrapper">
+                                    <span class="total-count">३२</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="party-card">
+                        <div class="party-card-inner">
+                            <div class="party-content">
+                                <div class="party-header">
+                                    <div class="party-logo rsp">RSP</div>
+                                    <div class="party-info">
+                                        <h3 class="rsp-hover">राष्ट्रिय स्वतन्त्र पार्टी</h3>
+                                        <div class="party-status">
+                                            <span class="status-dot blue"></span>
+                                            स्वतन्त्र दल
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="seat-stats">
+                                    <div class="seat-row">
+                                        <div class="seat-label">प्रत्यक्ष</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill direct" style="width: 14%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">७ सिट</span>
+                                                <span class="percentage">८.५%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seat-row">
+                                        <div class="seat-label">समानुपातिक</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill proportional" style="width: 18%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">१३ सिट</span>
+                                                <span class="percentage">१४.२%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="total-sidebar">
+                                <span class="total-label">जम्मा सिट</span>
+                                <div class="total-count-wrapper">
+                                    <span class="total-count">२०</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="party-card">
+                        <div class="party-card-inner">
+                            <div class="party-content">
+                                <div class="party-header">
+                                    <div class="party-logo jsa">JSA</div>
+                                    <div class="party-info">
+                                        <h3 class="jsa-hover">जनता समाजवादी पार्टी</h3>
+                                        <div class="party-status">
+                                            <span class="status-dot orange"></span>
+                                            मधेश केन्द्रित
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="seat-stats">
+                                    <div class="seat-row">
+                                        <div class="seat-label">प्रत्यक्ष</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill direct" style="width: 8%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">७ सिट</span>
+                                                <span class="percentage">४.२%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seat-row">
+                                        <div class="seat-label">समानुपातिक</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill proportional" style="width: 10%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">५ सिट</span>
+                                                <span class="percentage">६.८%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="total-sidebar">
+                                <span class="total-label">जम्मा सिट</span>
+                                <div class="total-count-wrapper">
+                                    <span class="total-count">१२</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="party-card">
+                        <div class="party-card-inner">
+                            <div class="party-content">
+                                <div class="party-header">
+                                    <div class="party-logo unified">एकीकृत</div>
+                                    <div class="party-info">
+                                        <h3 class="unified-hover">नेकपा (एकीकृत समाजवादी)</h3>
+                                        <div class="party-status">
+                                            <span class="status-dot purple"></span>
+                                            गठबन्धन साझेदार
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="seat-stats">
+                                    <div class="seat-row">
+                                        <div class="seat-label">प्रत्यक्ष</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill direct" style="width: 6%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">५ सिट</span>
+                                                <span class="percentage">३.५%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seat-row">
+                                        <div class="seat-label">समानुपातिक</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill proportional" style="width: 8%"></div>
+                                            <div class="progress-text">
+                                                <span class="seats">५ सिट</span>
+                                                <span class="percentage">५.२%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="total-sidebar">
+                                <span class="total-label">जम्मा सिट</span>
+                                <div class="total-count-wrapper">
+                                    <span class="total-count">१०</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Election Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <div class="navbar-logo">
+                    <span>NP</span>
+                </div>
+                <div class="navbar-divider"></div>
+                <span class="navbar-title">ELECTION COMMISSION</span>
+            </div>
+            
+            <div class="navbar-right">
+                <div class="live-indicator">
+                    <span class="live-dot">
+                        <span class="live-ping"></span>
+                        <span class="live-core"></span>
+                    </span>
+                    <span class="live-text">Live</span>
+                </div>
+                <button class="settings-btn">
+                    <iconify-icon icon="solar:settings-linear" width="18"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        
+        <header class="dashboard-header">
+            <div class="header-info">
+                <div class="header-meta">
+                    <span class="meta-badge">HoR 2079</span>
+                    <span class="meta-dot">&bull;</span>
+                    <span class="meta-text">National Results</span>
+                </div>
+                <h1 class="header-title">Parliamentary Allocation</h1>
+                <p class="header-description">
+                    Current distribution of 275 seats in the House of Representatives via First-Past-The-Post (Direct) and Proportional Representation (PR).
+                </p>
+            </div>
+
+            <div class="toolbar">
+                
+                <div class="tab-container">
+                    <button class="tab-button active">
+                        <iconify-icon icon="solar:user-linear" width="16" height="16"></iconify-icon>
+                        उम्मेदवार
+                    </button>
+                    <button class="tab-button">
+                        <iconify-icon icon="solar:graph-up-linear" width="16" height="16"></iconify-icon>
+                        मतान्तर
+                    </button>
+                    <button class="tab-button">
+                        <iconify-icon icon="solar:flag-linear" width="16" height="16"></iconify-icon>
+                        पार्टी
+                    </button>
+                </div>
+
+                <div class="toolbar-divider"></div>
+
+                <div class="layout-switcher">
+                    <button onclick="setLayout('list')" id="btn-list" class="layout-btn active">
+                        <iconify-icon icon="solar:list-linear" width="16"></iconify-icon>
+                    </button>
+                    <button onclick="setLayout('grid')" id="btn-grid" class="layout-btn">
+                        <iconify-icon icon="solar:widget-4-linear" width="16"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div id="card-container" class="card-container">
+            
+            <article class="card-root">
+                <div class="card-inner">
+                    
+                    <div class="card-identity">
+                        <div class="identity-wrapper">
+                            <div class="party-icon green">
+                                <iconify-icon icon="solar:tree-linear" width="20"></iconify-icon>
+                                <div class="rank-badge">1</div>
+                            </div>
+                            <div class="party-info">
+                                <h3 class="party-name">Nepali Congress</h3>
+                                <span class="party-leader">Sher Bahadur Deuba</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-progress">
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">Direct</span>
+                                <span class="progress-value">57</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill green-dark" style="width: 34.5%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">PR</span>
+                                <span class="progress-value">32</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill green-light" style="width: 29.1%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-sidebar sidebar-stat">
+                        <span class="sidebar-label">Total Seats</span>
+                        <div class="sidebar-content">
+                            <span class="total-number">89</span>
+                            <span class="badge-largest">Largest</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-root">
+                <div class="card-inner">
+                    <div class="card-identity">
+                        <div class="identity-wrapper">
+                            <div class="party-icon red">
+                                <iconify-icon icon="solar:sun-2-linear" width="20"></iconify-icon>
+                                <div class="rank-badge">2</div>
+                            </div>
+                            <div class="party-info">
+                                <h3 class="party-name">CPN (UML)</h3>
+                                <span class="party-leader">KP Sharma Oli</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">Direct</span>
+                                <span class="progress-value">44</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill red-dark" style="width: 26.6%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">PR</span>
+                                <span class="progress-value">34</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill red-light" style="width: 30.9%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-sidebar sidebar-stat">
+                        <span class="sidebar-label">Total Seats</span>
+                        <div class="sidebar-content">
+                            <span class="total-number">78</span>
+                            <span class="badge-seats">Seats</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-root">
+                <div class="card-inner">
+                    <div class="card-identity">
+                        <div class="identity-wrapper">
+                            <div class="party-icon red">
+                                <iconify-icon icon="solar:hammer-linear" width="20"></iconify-icon>
+                                <div class="rank-badge">3</div>
+                            </div>
+                            <div class="party-info">
+                                <h3 class="party-name">CPN (Maoist Centre)</h3>
+                                <span class="party-leader">Pushpa Kamal Dahal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">Direct</span>
+                                <span class="progress-value">18</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill red-dark" style="width: 10.9%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">PR</span>
+                                <span class="progress-value">14</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill red-light" style="width: 12.7%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-sidebar sidebar-stat">
+                        <span class="sidebar-label">Total Seats</span>
+                        <div class="sidebar-content">
+                            <span class="total-number">32</span>
+                            <span class="badge-seats">Seats</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-root">
+                <div class="card-inner">
+                    <div class="card-identity">
+                        <div class="identity-wrapper">
+                            <div class="party-icon blue">
+                                <iconify-icon icon="solar:bell-linear" width="20"></iconify-icon>
+                                <div class="rank-badge">4</div>
+                            </div>
+                            <div class="party-info">
+                                <h3 class="party-name">Rastriya Swatantra</h3>
+                                <span class="party-leader">Rabi Lamichhane</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">Direct</span>
+                                <span class="progress-value">7</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill blue-dark" style="width: 4.2%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-label">PR</span>
+                                <span class="progress-value">13</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill blue-light" style="width: 11.8%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-sidebar sidebar-stat">
+                        <span class="sidebar-label">Total Seats</span>
+                        <div class="sidebar-content">
+                            <span class="total-number">20</span>
+                            <span class="badge-seats">Seats</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

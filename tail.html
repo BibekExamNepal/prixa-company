@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ne"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        body { font-family: 'Noto Sans Devanagari', sans-serif; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen p-4 md:p-8 text-slate-800">
+
+    <div class="max-w-6xl mr-auto ml-auto space-y-6">
+        <!-- Header & Controls -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200 text-slate-700">
+                    <iconify-icon icon="solar:chart-2-linear" width="24" height="24" stroke-width="1.5"></iconify-icon>
+                </div>
+                <div class="">
+                    <h1 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight leading-tight">प्रत्यक्षतर्फ प्रतिनिधिसभा</h1>
+                    <p class="text-xs font-medium text-slate-500">निर्वाचन २०७९ • पछिल्लो अपडेट</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 overflow-x-auto no-scrollbar max-w-full pb-1 md:pb-0">
+                <div class="flex items-center p-1 bg-white border border-slate-200 rounded-lg shadow-sm">
+                    <button class="flex items-center gap-2 px-4 py-1.5 rounded-md bg-slate-900 text-white shadow-sm text-xs font-semibold whitespace-nowrap transition-all">
+                        <iconify-icon icon="solar:user-linear" width="16" height="16"></iconify-icon>
+                        उम्मेदवार
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-1.5 rounded-md text-slate-600 hover:bg-slate-50 text-xs font-medium whitespace-nowrap transition-all">
+                        <iconify-icon icon="solar:graph-up-linear" width="16" height="16"></iconify-icon>
+                        मतान्तर
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-1.5 rounded-md text-slate-600 hover:bg-slate-50 text-xs font-medium whitespace-nowrap transition-all">
+                        <iconify-icon icon="solar:flag-linear" width="16" height="16"></iconify-icon>
+                        पार्टी
+                    </button>
+                </div>
+
+                <div class="w-px h-8 bg-slate-200 hidden md:block"></div>
+
+                <div class="flex items-center p-1 bg-white border border-slate-200 rounded-lg shadow-sm">
+                    <button id="btn-view-list" onclick="setView('list')" class="p-1.5 rounded-md text-slate-900 bg-slate-100 shadow-sm transition-all">
+                        <iconify-icon icon="solar:list-linear" width="20" height="20" stroke-width="1.5"></iconify-icon>
+                    </button>
+                    <button id="btn-view-grid" onclick="setView('grid')" class="p-1.5 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all">
+                        <iconify-icon icon="solar:widget-2-linear" width="20" height="20" stroke-width="1.5" class="" style="color: rgb(71, 85, 105);"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div id="results-container" class="grid grid-cols-1 gap-4 transition-all duration-300">
+            
+            <!-- Card 1 -->
+            <div class="card-root bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] overflow-hidden hover:border-slate-300 transition-colors group">
+                <div class="card-layout flex flex-col md:flex-row h-full">
+                    <div class="flex-1 p-5 flex flex-col justify-between">
+                        <div class="">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="h-12 w-12 shrink-0 rounded-full bg-green-50 text-green-700 flex items-center justify-center border border-green-100 text-sm font-bold tracking-tighter">
+                                    NC
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-green-700 transition-colors">नेपाली कांग्रेस</h3>
+                                    <div class="flex items-center gap-2 text-xs text-slate-500 font-medium mt-0.5">
+                                        <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
+                                        सरकारको नेतृत्व
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-24 shrink-0 text-xs font-semibold text-slate-500 uppercase tracking-wide">प्रत्यक्ष</div>
+                                    <div class="flex-1 h-8 bg-slate-50 rounded-lg relative overflow-hidden flex items-center px-3 border border-slate-100">
+                                        <div class="absolute top-0 left-0 bottom-0 bg-blue-500/10 w-[64%] border-r border-blue-500/20 rounded-r-md"></div>
+                                        <div class="relative z-10 w-full flex justify-between items-center text-xs">
+                                            <span class="font-bold text-slate-700">५७ सिट</span>
+                                            <span class="font-medium text-slate-400">३४.५%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-24 shrink-0 text-xs font-semibold text-slate-500 uppercase tracking-wide">समानुपातिक</div>
+                                    <div class="flex-1 h-8 bg-slate-50 rounded-lg relative overflow-hidden flex items-center px-3 border border-slate-100">
+                                        <div class="absolute top-0 left-0 bottom-0 bg-slate-200 w-[36%] border-r border-slate-300 rounded-r-md"></div>
+                                        <div class="relative z-10 w-full flex justify-between items-center text-xs">
+                                            <span class="font-bold text-slate-700">३२ सिट</span>
+                                            <span class="font-medium text-slate-400">२७.८%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-stat bg-slate-50/50 border-t md:border-t-0 md:border-l border-slate-100 md:w-40 flex flex-row md:flex-col items-center justify-between md:justify-center p-5 md:p-0 gap-2 transition-all">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider md:mb-1">जम्मा सिट</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-bold text-slate-900 tracking-tight">८९</span>
+                            <iconify-icon icon="solar:cup-star-linear" class="text-yellow-500 mb-1" width="20" height="20"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card-root bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] overflow-hidden hover:border-slate-300 transition-colors group">
+                <div class="card-layout flex flex-col md:flex-row h-full">
+                    <div class="flex-1 p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="h-12 w-12 shrink-0 rounded-full bg-red-50 text-red-700 flex items-center justify-center border border-red-100 text-sm font-bold tracking-tighter">
+                                    UML
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-red-700 transition-colors">नेकपा (एमाले)</h3>
+                                    <div class="flex items-center gap-2 text-xs text-slate-500 font-medium mt-0.5">
+                                        <span class="inline-block w-2 h-2 rounded-full bg-red-500"></span>
+                                        प्रमुख प्रतिपक्ष
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-24 shrink-0 text-xs font-semibold text-slate-500 uppercase tracking-wide">प्रत्यक्ष</div>
+                                    <div class="flex-1 h-8 bg-slate-50 rounded-lg relative overflow-hidden flex items-center px-3 border border-slate-100">
+                                        <div class="absolute top-0 left-0 bottom-0 bg-blue-500/10 w-[49%] border-r border-blue-500/20 rounded-r-md"></div>
+                                        <div class="relative z-10 w-full flex justify-between items-center text-xs">
+                                            <span class="font-bold text-slate-700">४४ सिट</span>
+                                            <span class="font-medium text-slate-400">२६.९%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-24 shrink-0 text-xs font-semibold text-slate-500 uppercase tracking-wide">समानुपातिक</div>
+                                    <div class="flex-1 h-8 bg-slate-50 rounded-lg relative overflow-hidden flex items-center px-3 border border-slate-100">
+                                        <div class="absolute top-0 left-0 bottom-0 bg-slate-200 w-[38%] border-r border-slate-300 rounded-r-md"></div>
+                                        <div class="relative z-10 w-full flex justify-between items-center text-xs">
+                                            <span class="font-bold text-slate-700">३४ सिट</span>
+                                            <span class="font-medium text-slate-400">२८.१%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-stat bg-slate-50/50 border-t md:border-t-0 md:border-l border-slate-100 md:w-40 flex flex-row md:flex-col items-center justify-between md:justify-center p-5 md:p-0 gap-2 transition-all">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider md:mb-1">जम्मा सिट</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-bold text-slate-900 tracking-tight">७८</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card-root bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] overflow-hidden hover:border-slate-300 transition-colors group">
+                <div class="card-layout flex flex-col md:flex-row h-full">
+                    <div class="flex-1 p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="h-12 w-12 shrink-0 rounded-full bg-red-50 text-red-700 flex items-center justify-center border border-red-100 text-sm font-bold tracking-tighter">
+                                    MC
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-red-700 transition-colors">नेकपा (माओवादी केन्द्र)</h3>
+                                    <div class="flex items-center gap-2 text-xs text-slate-500 font-medium mt-0.5">
+                                        <span class="inline-block w-2 h-2 rounded-full bg-red-500"></span>
+                                        गठबन्धन दल
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-24 shrink-0 text-xs font-semibold text-slate-500 uppercase tracking-wide">प्रत्यक्ष</div>
+                                    <div class="flex-1 h-8 bg-slate-50 rounded-lg relative overflow-hidden flex items-center px-3 border border-slate-100">
+                                        <div class="absolute top-0 left-0 bottom-0 bg-blue-500/10 w-[20%] border-r border-blue-500/20 rounded-r-md"></div>
+                                        <div class="relative z-10 w-full flex justify-between items-center text-xs">
+                                            <span class="font-bold text-slate-700">१८ सिट</span>
+                                            <span class="font-medium text-slate-400">११.२%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-24 shrink-0 text-xs font-semibold text-slate-500 uppercase tracking-wide">समानुपातिक</div>
+                                    <div class="flex-1 h-8 bg-slate-50 rounded-lg relative overflow-hidden flex items-center px-3 border border-slate-100">
+                                        <div class="absolute top-0 left-0 bottom-0 bg-slate-200 w-[16%] border-r border-slate-300 rounded-r-md"></div>
+                                        <div class="relative z-10 w-full flex justify-between items-center text-xs">
+                                            <span class="font-bold text-slate-700">१४ सिट</span>
+                                            <span class="font-medium text-slate-400">११.५%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-stat bg-slate-50/50 border-t md:border-t-0 md:border-l border-slate-100 md:w-40 flex flex-row md:flex-col items-center justify-between md:justify-center p-5 md:p-0 gap-2 transition-all">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider md:mb-1">जम्मा सिट</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-3xl font-bold text-slate-900 tracking-tight">३२</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setView(view) {
+            const container = document.getElementById('results-container');
+            const layouts = document.querySelectorAll('.card-layout');
+            const sidebars = document.querySelectorAll('.sidebar-stat');
+            
+            const btnList = document.getElementById('btn-view-list');
+            const btnGrid = document.getElementById('btn-view-grid');
+
+            if (view === 'grid') {
+                // Container styles for Grid
+                container.classList.remove('grid-cols-1');
+                container.classList.add('md:grid-cols-2', 'lg:grid-cols-3');
+
+                // Internal card layout for Grid (Stack vertically)
+                layouts.forEach(el => {
+                    el.classList.remove('md:flex-row');
+                    el.classList.add('flex-col');
+                });
+
+                // Sidebar adjustments for Grid
+                sidebars.forEach(el => {
+                    el.classList.remove('md:border-t-0', 'md:border-l', 'md:w-40', 'md:flex-col');
+                    el.classList.add('w-full', 'border-t', 'flex-row');
+                });
+
+                // Button State
+                btnList.classList.remove('bg-slate-100', 'text-slate-900', 'shadow-sm');
+                btnList.classList.add('text-slate-400');
+                
+                btnGrid.classList.add('bg-slate-100', 'text-slate-900', 'shadow-sm');
+                btnGrid.classList.remove('text-slate-400');
+
+            } else {
+                // Container styles for List
+                container.classList.add('grid-cols-1');
+                container.classList.remove('md:grid-cols-2', 'lg:grid-cols-3');
+
+                // Internal card layout for List (Side by side)
+                layouts.forEach(el => {
+                    el.classList.add('md:flex-row');
+                    el.classList.remove('flex-col');
+                });
+
+                // Sidebar adjustments for List
+                sidebars.forEach(el => {
+                    el.classList.add('md:border-t-0', 'md:border-l', 'md:w-40', 'md:flex-col');
+                    el.classList.remove('w-full', 'border-t', 'flex-row');
+                });
+
+                // Button State
+                btnList.classList.add('bg-slate-100', 'text-slate-900', 'shadow-sm');
+                btnList.classList.remove('text-slate-400');
+                
+                btnGrid.classList.remove('bg-slate-100', 'text-slate-900', 'shadow-sm');
+                btnGrid.classList.add('text-slate-400');
+            }
+        }
+    </script>
+
+</body></html>
