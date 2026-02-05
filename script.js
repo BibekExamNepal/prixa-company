@@ -5,25 +5,33 @@ function setLayout(type) {
 
     if (type === 'grid') {
         container.classList.add('grid-mode');
-        
         btnList.classList.remove('active');
         btnGrid.classList.add('active');
+
     } else {
         container.classList.remove('grid-mode');
-        
         btnList.classList.add('active');
         btnGrid.classList.remove('active');
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    
+    const container = document.getElementById('card-container');
+    const btnGrid = document.getElementById('btn-grid');
+    const btnList = document.getElementById('btn-list');
+
+    if (container && btnGrid && btnList) {
+        container.classList.add('grid-mode');
+        btnGrid.classList.add('active');
+        btnList.classList.remove('active');
+    }
+
     const cards = document.querySelectorAll('.card-root');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
         card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-        
+
         setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
@@ -40,9 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let touchStartX = 0;
     let touchEndX = 0;
-
     const tabContainer = document.querySelector('.tab-container');
-    
+
     if (tabContainer) {
         tabContainer.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
@@ -75,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     progressFills.forEach(fill => {
         const width = fill.style.width;
         fill.style.width = '0%';
-        
+
         setTimeout(() => {
             fill.style.width = width;
         }, 100);
@@ -148,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         layoutSwitcher.addEventListener('touchstart', function() {
             this.style.transform = 'scale(0.98)';
         }, { passive: true });
-        
+
         layoutSwitcher.addEventListener('touchend', function() {
             this.style.transform = 'scale(1)';
         }, { passive: true });
